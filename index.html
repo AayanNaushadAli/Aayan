@@ -326,27 +326,27 @@
                 <div class="contact-form-container">
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-input" id="name" required>
+                            <label class="form-label" for="name">Name</label>
+                            <input type="text" class="form-input" id="name" name="name" required>
                             <div class="input-glow"></div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-input" id="email" required>
+                            <label class="form-label" for="email">Email</label>
+                            <input type="email" class="form-input" id="email" name="email" required>
                             <div class="input-glow"></div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Subject</label>
-                            <input type="text" class="form-input" id="subject" required>
+                            <label class="form-label" for="subject">Subject</label>
+                            <input type="text" class="form-input" id="subject" name="subject" required>
                             <div class="input-glow"></div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-input" id="message" rows="5" required></textarea>
+                            <label class="form-label" for="message">Message</label>
+                            <textarea class="form-input" id="message" rows="5" name="message" required></textarea>
                             <div class="input-glow"></div>
                         </div>
                         <button type="submit" class="btn-submit">
-                            <span class="btn-text">Send Message</span>
+                            <span class="btn-text contact-submit" onclick="sendMail()">Send Message</span>
                             <div class="btn-glow-effect"></div>
                         </button>
                     </form>
@@ -370,6 +370,14 @@
         </div>
     </footer>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "zkc0RWvjAEftIL5KZ",
+            });
+        })();
+    </script>
     <script src="app.js"></script>
 </body>
 </html>

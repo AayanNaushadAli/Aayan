@@ -220,29 +220,7 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-function submitForm(data) {
-    const submitBtn = document.querySelector('.btn-submit');
-    const originalText = submitBtn.innerHTML;
-    
-    // Show loading state
-    submitBtn.innerHTML = '<span class="btn-text">Sending...</span>';
-    submitBtn.disabled = true;
-    
-    // Simulate form submission (replace with actual API call)
-    setTimeout(() => {
-        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-        document.getElementById('contactForm').reset();
-        
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // Remove focused classes
-        document.querySelectorAll('.form-group').forEach(group => {
-            group.classList.remove('focused');
-        });
-    }, 2000);
-}
+
 
 function showNotification(message, type = 'info') {
     // Create notification element
@@ -675,4 +653,58 @@ function activateEasterEgg() {
         clearInterval(matrixInterval);
         canvas.remove();
     }, 10000);
+}
+
+
+function sendMail() {
+    let params = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("message").value,
+    };
+    // Use the unified submitForm so the UI is consistent (loading state + modal notifications)
+    submitForm(params);
+}
+
+
+function submitForm(data) {
+    const submitBtn = document.querySelector('.btn-submit');
+    const originalText = submitBtn ? submitBtn.innerHTML : 'Send';
+
+    // Show loading state if button exists
+    if (submitBtn) {
+        submitBtn.innerHTML = '<span class="btn-text">Sending...</span>';
+        submitBtn.disabled = true;
+    }
+
+    // Send email using EmailJS
+    emailjs.send("service_g2621jw", "template_uzwa4zj", data)
+        .then(() => {
+            // Use the existing top-right toast notification
+            showNotification("Message sent successfully! I'll get back to you soon.", 'success');
+            const formEl = document.getElementById('contactForm');
+            if (formEl) formEl.reset();
+
+            // Reset button
+            if (submitBtn) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+
+            // Remove focused classes
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.classList.remove('focused');
+            });
+        })
+        .catch((error) => {
+            console.error('EmailJS error:', error);
+            showNotification('Failed to send message. Please try again later.', 'error');
+
+            // Reset button
+            if (submitBtn) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
 }
