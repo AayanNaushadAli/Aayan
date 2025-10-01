@@ -66,39 +66,58 @@ function initCursorTrail() {
 // Smooth Scrolling Navigation
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('.nav-link');
-    
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
                 });
-                
+
                 // Add active class to clicked link
                 navLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
+
+                // Close mobile menu after clicking a link
+                navMenu.classList.remove('active');
             }
         });
+    });
+
+    // Hamburger menu toggle
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            navMenu.classList.remove('active');
+        }
     });
 
     // Update active nav link on scroll
     window.addEventListener('scroll', () => {
         const scrollPos = window.scrollY + 100;
-        
+
         navLinks.forEach(link => {
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 const sectionTop = targetSection.offsetTop;
                 const sectionBottom = sectionTop + targetSection.offsetHeight;
-                
+
                 if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
                     navLinks.forEach(l => l.classList.remove('active'));
                     link.classList.add('active');

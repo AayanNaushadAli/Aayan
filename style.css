@@ -1020,6 +1020,7 @@ body {
   justify-content: center;
   position: relative;
   background: radial-gradient(ellipse at center, rgba(0, 128, 255, 0.1) 0%, var(--bg-primary) 70%);
+  padding-top: 80px; /* Add padding to prevent content hidden behind navbar */
 }
 
 .hero-content {
@@ -1645,48 +1646,142 @@ textarea.form-input {
   text-shadow: 0 0 10px var(--neon-cyan);
 }
 
+/* Hamburger Menu Styles */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all var(--transition-normal);
+  color: var(--neon-cyan);
+  position: relative;
+  z-index: 1001;
+}
+
+.hamburger:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.hamburger-icon {
+  width: 24px;
+  height: 24px;
+  stroke: var(--neon-cyan);
+  transition: all var(--transition-normal);
+}
+
+.hamburger:hover .hamburger-icon {
+  stroke: var(--text-primary);
+  filter: drop-shadow(0 0 8px var(--neon-cyan));
+}
+
+.nav-menu {
+  transition: all var(--transition-normal);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+  }
+
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    width: 200px;
+    text-align: center;
+    border-radius: 25px;
+    transition: all var(--transition-normal);
+  }
+
+  .nav-link:hover {
+    background: rgba(0, 255, 255, 0.1);
+    transform: scale(1.05);
+  }
+
   .hero-content,
   .about-content,
   .contact-content {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  
+
   .hero-title {
     font-size: 2.5rem;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }
-  
-  .nav-menu {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
+
   .hero-buttons {
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .floating-elements {
     width: 300px;
     height: 300px;
   }
-  
+
   .floating-element {
     width: 60px;
     height: 60px;
   }
-  
-  .projects-grid {
+
+  .projects-grid,
+  .skills-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    padding: 1.5rem;
+  }
+
+  .project-card {
+    padding: 1.5rem;
+  }
+
+  .contact-form-container {
+    padding: 1.5rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
   }
 }
 
@@ -1694,22 +1789,56 @@ textarea.form-input {
   .container {
     padding: 0 1rem;
   }
-  
-  .hero-title {
-    font-size: 2rem;
-  }
-  
+
   .nav-container {
     padding: 0 1rem;
   }
-  
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
   .btn-glow {
     padding: 0.8rem 1.5rem;
     font-size: 0.9rem;
+    width: 100%;
+    max-width: 250px;
   }
-  
+
   .section-title {
     font-size: 1.8rem;
     margin-bottom: 2rem;
+  }
+
+  .nav-link {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+    width: 180px;
+  }
+
+  .about-description,
+  .contact-description {
+    font-size: 1rem;
+  }
+
+  .info-item,
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .contact-details {
+    gap: 1rem;
+  }
+
+  .floating-elements {
+    width: 250px;
+    height: 250px;
+  }
+
+  .floating-element {
+    width: 50px;
+    height: 50px;
   }
 }
