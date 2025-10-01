@@ -376,14 +376,15 @@ function initParticleEffects() {
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
+        // Spread particles randomly in the whole container height and width
         particle.style.cssText = `
             position: absolute;
             width: ${Math.random() * 4 + 2}px;
             height: ${Math.random() * 4 + 2}px;
-            background: ${['#00ffff', '#0080ff', '#8b00ff', '#00ff00', '#ffff00', '#ffd700', '#ffa500'][Math.floor(Math.random() * 7)]};
+            background: ${['#00ffff', '#bbd5f0ff', '#bae3eeff', '#a8e1f1ff', '#c3acf1ff', '#3df4f4ff', '#adcef7ff'][Math.floor(Math.random() * 7)]};
             border-radius: 100%;
             left: ${Math.random() * 100}vw;
-            top: 100%;
+            top: ${Math.random() * 100}vh;
             opacity: ${Math.random() * 0.6 + 0.3};
             animation: particleFloat ${Math.random() * 15 + 10}s linear infinite;
             box-shadow: 0 0 6px currentColor;
