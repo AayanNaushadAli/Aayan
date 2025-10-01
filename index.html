@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aayan - Full Stack Developer</title>
+    <meta name="description" content="Aayan - Full Stack Developer specializing in web development, AI/ML, and 3D interactive experiences">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cursor Trail -->
+    <div class="cursor-trail"></div>
+    
+    <!-- Background Particles -->
+    <div class="bg-particles"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="glow-text">AAYAN</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="glow-text typing-animation"></span>
+                </h1>
+                <h2 class="hero-subtitle typing-subtitle"></h2>
+                <p class="hero-description">
+                    Passionate about coding and innovation, blending creativity with technology to build impactful solutions. 
+                    Specialized in web development, app development, and AI/ML projects.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-glow primary" onclick="scrollToSection('projects')">View Projects</button>
+                    <button class="btn-glow secondary" onclick="scrollToSection('contact')">Get in Touch</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="floating-element" style="--delay: 0s;"></div>
+                    <div class="floating-element" style="--delay: 1s;"></div>
+                    <div class="floating-element" style="--delay: 2s;"></div>
+                    <div class="floating-element" style="--delay: 3s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title glow-text">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        Based in Bihar, India, I'm a passionate developer who loves creating innovative solutions. 
+                        My expertise spans across web development, AI/ML, and 3D interactive experiences using 
+                        cutting-edge technologies like Three.js and WebGL.
+                    </p>
+                    <div class="about-info">
+                        <div class="info-item">
+                            <span class="info-label">Location:</span>
+                            <span class="info-value">Bihar, India</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Specialization:</span>
+                            <span class="info-value">Full Stack Development</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Experience:</span>
+                            <span class="info-value">3D Web Development & AI/ML</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="code-title">about-me.js</span>
+                        </div>
+                        <div class="code-content">
+                            <div class="code-line">
+                                <span class="keyword">const</span> 
+                                <span class="variable">developer</span> 
+                                <span class="operator">=</span> 
+                                <span class="bracket">{</span>
+                            </div>
+                            <div class="code-line indent">
+                                <span class="property">name</span><span class="operator">:</span> 
+                                <span class="string">'Aayan'</span>,
+                            </div>
+                            <div class="code-line indent">
+                                <span class="property">passion</span><span class="operator">:</span> 
+                                <span class="string">'Innovation'</span>,
+                            </div>
+                            <div class="code-line indent">
+                                <span class="property">focus</span><span class="operator">:</span> 
+                                <span class="string">'Full Stack'</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="bracket">}</span>;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title glow-text">Technologies & Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-skill="JavaScript">
+                    <div class="skill-icon">JS</div>
+                    <div class="skill-name">JavaScript</div>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="95"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="React">
+                    <div class="skill-icon">⚛️</div>
+                    <div class="skill-name">React</div>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="90"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="Node.js">
+                    <div class="skill-icon">N</div>
+                    <div class="skill-name">Node.js</div>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="88"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="Python">
+                    <div class="skill-icon">🐍</div>
+                    <div class="skill-name">Python</div>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="AI/ML">
+                    <div class="skill-icon">🤖</div>
+                    <div class="skill-name">AI/ML</div>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="80"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="Three.js">
+                    <div class="skill-icon">3D</div>
+                    <div class="skill-name">Three.js</div>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="WebGL">
+                    <div class="skill-icon">GL</div>
+                    <div class="skill-name">WebGL</div>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="78"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="MongoDB">
+                    <div class="skill-icon">🍃</div>
+                    <div class="skill-name">MongoDB</div>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="82"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="Express.js">
+                    <div class="skill-icon">E</div>
+                    <div class="skill-name">Express.js</div>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="87"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title glow-text">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">3D Art Gallery</h3>
+                        <div class="project-status">Featured</div>
+                    </div>
+                    <p class="project-description">
+                        Immersive art gallery built with Three.js and WebGL, featuring interactive 3D environments 
+                        and smooth animations for an engaging user experience.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">WebGL</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-project">View Live</button>
+                        <button class="btn-project secondary">View Code</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">AR Product Showcase</h3>
+                        <div class="project-status">Latest</div>
+                    </div>
+                    <p class="project-description">
+                        Augmented reality product showcase for e-commerce, allowing customers to visualize 
+                        products in their real environment using WebXR technology.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">WebXR</span>
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">React</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-project">View Live</button>
+                        <button class="btn-project secondary">View Code</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Interactive Data Viz</h3>
+                        <div class="project-status">Popular</div>
+                    </div>
+                    <p class="project-description">
+                        Complex data presented through interactive 3D charts and visualizations, 
+                        making data analysis intuitive and engaging.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">WebGL</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-project">View Live</button>
+                        <button class="btn-project secondary">View Code</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">VR Experience</h3>
+                        <div class="project-status">Enterprise</div>
+                    </div>
+                    <p class="project-description">
+                        Virtual reality experience for automotive industry, providing immersive 
+                        vehicle configurators and virtual showrooms.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">WebXR</span>
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-project">View Live</button>
+                        <button class="btn-project secondary">View Code</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title glow-text">Let's Connect</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 class="contact-subtitle">Get in Touch</h3>
+                    <p class="contact-description">
+                        Ready to collaborate on your next project? Let's discuss how we can bring your ideas to life 
+                        with cutting-edge technology and innovative solutions.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-text">
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:aayannaushad0606@gmail.com" class="contact-link">aayannaushad0606@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-text">
+                                <span class="contact-label">Phone</span>
+                                <a href="tel:+917857003343" class="contact-link">+91 7857003343</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">
+                                <span class="contact-label">Location</span>
+                                <span class="contact-value">Bihar, India</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-input" id="name" required>
+                            <div class="input-glow"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" id="email" required>
+                            <div class="input-glow"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-input" id="subject" required>
+                            <div class="input-glow"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-input" id="message" rows="5" required></textarea>
+                            <div class="input-glow"></div>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <span class="btn-text">Send Message</span>
+                            <div class="btn-glow-effect"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2025 Aayan. Crafted with passion and cutting-edge technology.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="mailto:aayannaushad0606@gmail.com" class="footer-link">Email</a>
+                    <a href="tel:+917857003343" class="footer-link">Phone</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
