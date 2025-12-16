@@ -740,22 +740,22 @@ select.form-control {
 /* END PERPLEXITY DESIGN SYSTEM */
 /* Import design system variables */
 :root {
-  /* Dark Theme Color Palette */
-  --bg-primary: #000000;
-  --bg-secondary: #111111;
-  --bg-tertiary: #1a1a1a;
-  --bg-card: #222222;
-  --text-primary: #ffffff;
-  --text-secondary: #cccccc;
-  --text-muted: #888888;
+  /* Bright Theme Color Palette */
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e8e8e8;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #333333;
+  --text-muted: #666666;
   
-  /* Neon/Glow Colors */
-  --neon-cyan: #00ffff;
-  --neon-blue: #0080ff;
-  --neon-purple: #8b00ff;
-  --neon-green: #00ff00;
-  --neon-pink: #ff00ff;
-  --neon-yellow: #ffff00;
+  /* Neon/Glow Colors - Adjusted for bright background */
+  --neon-cyan: #00a8cc;
+  --neon-blue: #0066cc;
+  --neon-purple: #6b00b3;
+  --neon-green: #00cc66;
+  --neon-pink: #cc00cc;
+  --neon-yellow: #cc9900;
   
   /* Glow Effects */
   --glow-cyan: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
@@ -792,110 +792,40 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
-  cursor: none;
+  cursor: none; /* hide default cursor */
 }
 
-/* Custom Cursor */
-.cursor-trail {
+/* Custom cursor */
+.custom-cursor {
   position: fixed;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, rgba(0, 255, 255, 0.8) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  /* Add these lines to fix the dot issue: */
-  opacity: 0; /* Start hidden */
-  transform: translate(-50%, -50%);
-  left: -100px; /* Move off-screen initially */
-  top: -100px;  /* Move off-screen initially */
-}
-
-/* .cursor-trail {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, var(--neon-cyan) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: var(--z-cursor);
-  transition: transform var(--transition-fast);
-  box-shadow: var(--glow-cyan);
-} */
-/* Background Particles */
-
-.bg-particles {
-  position: fixed;
-  top: 0%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden; /* Added to hide any overflow */
-}
-
-.bg-particles::before {
-  content: '';
-  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    radial-gradient(2px 2px at 20px 30px, var(--neon-cyan), transparent),
-    radial-gradient(2px 2px at 40px 70px, var(--neon-blue), transparent),
-    radial-gradient(1px 1px at 90px 40px, var(--neon-purple), transparent),
-    radial-gradient(1px 1px at 130px 80px, var(--neon-green), transparent);
-  background-repeat: repeat;
-  background-size: 200px 200px;
-  animation: float 20s linear infinite;
-  opacity: 0.5;
-}
-
-/* Firefly Particles */
-.particle {
-  position: absolute;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
-  box-shadow:
-    0 0 10px currentColor,
-    0 0 20px currentColor,
-    0 0 30px currentColor;
-  animation: particleFloat 15s linear infinite, particleGlow 3s ease-in-out infinite alternate;
   pointer-events: none;
+  z-index: 10000;
+  background: radial-gradient(circle at 30% 30%, #ffffff, rgba(0, 255, 255, 0.15));
+  box-shadow:
+    0 0 25px rgba(0, 255, 255, 0.65),
+    0 0 50px rgba(125, 211, 252, 0.6);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.18s ease,
+    height 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+  backdrop-filter: blur(10px);
+  mix-blend-mode: screen;
 }
 
-@keyframes particleFloat {
-  0% {
-    transform: translateY(100vh) translateX(0px) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10vh) translateX(50px) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-@keyframes particleGlow {
-  0% {
-    box-shadow:
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 15px currentColor;
-  }
-  100% {
-    box-shadow:
-      0 0 15px currentColor,
-      0 0 25px currentColor,
-      0 0 35px currentColor;
-  }
+.custom-cursor.cursor-hover {
+  width: 42px;
+  height: 42px;
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.9),
+    0 0 70px rgba(129, 140, 248, 0.9);
+  background: radial-gradient(circle at 30% 30%, #ffffff, rgba(59, 130, 246, 0.35));
 }
 
 /* Navigation */
@@ -904,12 +834,13 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 168, 204, 0.3);
   z-index: var(--z-nav);
   padding: 1rem 0;
   transition: all var(--transition-normal);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -939,7 +870,7 @@ body {
 }
 
 .nav-link {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 25px;
@@ -962,7 +893,7 @@ body {
 }
 
 .nav-link:hover {
-  color: var(--text-primary);
+  color: var(--neon-cyan);
   text-shadow: 0 0 10px currentColor;
 }
 
@@ -1012,7 +943,8 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  background: radial-gradient(ellipse at center, rgba(0, 128, 255, 0.1) 0%, var(--bg-primary) 70%);
+  z-index: 1;
+  background: radial-gradient(ellipse at center, rgba(0, 168, 204, 0.15) 0%, var(--bg-primary) 70%);
   padding-top: 80px; /* Add padding to prevent content hidden behind navbar */
 }
 
@@ -1096,8 +1028,8 @@ body {
 
 .btn-glow.primary {
   background: linear-gradient(45deg, var(--neon-cyan), var(--neon-blue));
-  color: var(--bg-primary);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 168, 204, 0.4);
 }
 
 .btn-glow.secondary {
@@ -1109,16 +1041,16 @@ body {
 
 .btn-glow:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 168, 204, 0.3);
 }
 
 .btn-glow.primary:hover {
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 10px 25px rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 168, 204, 0.6), 0 10px 25px rgba(0, 168, 204, 0.3);
 }
 
 .btn-glow.secondary:hover {
-  background: rgba(0, 255, 255, 0.1);
-  box-shadow: inset 0 0 30px rgba(0, 255, 255, 0.2), 0 0 30px rgba(0, 255, 255, 0.5);
+  background: rgba(0, 168, 204, 0.1);
+  box-shadow: inset 0 0 30px rgba(0, 168, 204, 0.2), 0 0 30px rgba(0, 168, 204, 0.4);
 }
 
 /* Floating Elements */
@@ -1156,6 +1088,7 @@ body {
   padding: 6rem 0;
   background: var(--bg-secondary);
   position: relative;
+  z-index: 1;
 }
 
 .about-content {
@@ -1199,8 +1132,8 @@ body {
   background: var(--bg-card);
   border-radius: 15px;
   overflow: hidden;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 168, 204, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   transform-style: preserve-3d;
 }
@@ -1211,7 +1144,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 168, 204, 0.3);
 }
 
 .code-dots {
@@ -1259,6 +1192,8 @@ body {
 .skills {
   padding: 6rem 0;
   background: var(--bg-primary);
+  position: relative;
+  z-index: 1;
 }
 
 .skills-grid {
@@ -1271,11 +1206,12 @@ body {
   background: var(--bg-card);
   padding: 2rem;
   border-radius: 15px;
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(0, 168, 204, 0.3);
   text-align: center;
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .skill-card::before {
@@ -1342,6 +1278,8 @@ body {
 .projects {
   padding: 6rem 0;
   background: var(--bg-secondary);
+  position: relative;
+  z-index: 1;
 }
 
 .projects-grid {
@@ -1354,10 +1292,11 @@ body {
   background: var(--bg-card);
   border-radius: 20px;
   padding: 2rem;
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(0, 168, 204, 0.3);
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .project-card::before {
@@ -1459,6 +1398,8 @@ body {
 .contact {
   padding: 6rem 0;
   background: var(--bg-primary);
+  position: relative;
+  z-index: 1;
 }
 
 .contact-content {
@@ -1493,8 +1434,9 @@ body {
   padding: 1rem;
   background: var(--bg-card);
   border-radius: 10px;
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(0, 168, 204, 0.3);
   transition: all var(--transition-normal);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .contact-item:hover {
@@ -1539,8 +1481,8 @@ body {
   background: var(--bg-card);
   padding: 2rem;
   border-radius: 20px;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 168, 204, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
@@ -1558,8 +1500,8 @@ body {
 .form-input {
   width: 100%;
   padding: 1rem;
-  background: var(--bg-secondary);
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  background: var(--bg-primary);
+  border: 1px solid rgba(0, 168, 204, 0.3);
   border-radius: 10px;
   color: var(--text-primary);
   font-size: 1rem;
@@ -1569,8 +1511,8 @@ body {
 .form-input:focus {
   outline: none;
   border-color: var(--neon-cyan);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-  background: rgba(0, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(0, 168, 204, 0.2);
+  background: rgba(0, 168, 204, 0.05);
 }
 
 textarea.form-input {
@@ -1608,7 +1550,9 @@ textarea.form-input {
 .footer {
   background: var(--bg-secondary);
   padding: 2rem 0;
-  border-top: 1px solid rgba(0, 255, 255, 0.2);
+  border-top: 1px solid rgba(0, 168, 204, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
 .footer-content {
@@ -1696,7 +1640,7 @@ textarea.form-input {
     opacity: 0;
     visibility: hidden;
     z-index: 1000;
-    border-top: 1px solid rgba(0, 255, 255, 0.2);
+    border-top: 1px solid rgba(0, 168, 204, 0.3);
   }
 
   .nav-menu.active {

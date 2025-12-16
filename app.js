@@ -1,67 +1,14 @@
-// Global variables
-let mouseX = 0;
-let mouseY = 0;
-let cursorTrail = [];
-const trailLength = 20;
-
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initCursorTrail();
+    initLiquidEffect();
+    initCustomCursor();
     initSmoothScrolling();
     initSkillBars();
     initContactForm();
     initScrollAnimations();
-    initParticleEffects();
     initHoverEffects();
     initTypewriterEffect();
 });
-
-// Cursor Trail Effect
-function initCursorTrail() {
-    const trail = document.querySelector('.cursor-trail');
-    
-    // Create multiple trail elements
-    for (let i = 0; i < trailLength; i++) {
-        const trailElement = document.createElement('div');
-        trailElement.className = 'cursor-trail';
-        // Hide the first trail element initially to avoid dot
-        if (i === 0) {
-            trailElement.style.opacity = '0';
-        } else {
-            trailElement.style.opacity = (1 - i / trailLength) * 0.8;
-        }
-        trailElement.style.transform = `scale(${1 - i / trailLength})`;
-        document.body.appendChild(trailElement);
-        cursorTrail.push(trailElement);
-    }
-
-    // Track mouse movement
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        // Update trail positions with delay
-        cursorTrail.forEach((element, index) => {
-            setTimeout(() => {
-                element.style.left = mouseX - 10 + 'px';
-                element.style.top = mouseY - 10 + 'px';
-            }, index * 20);
-        });
-    });
-
-    // Hide cursor trail when mouse leaves window
-    document.addEventListener('mouseleave', () => {
-        cursorTrail.forEach(element => {
-            element.style.opacity = '0';
-        });
-    });
-
-    document.addEventListener('mouseenter', () => {
-        cursorTrail.forEach((element, index) => {
-            element.style.opacity = (1 - index / trailLength) * 0.8;
-        });
-    });
-}
 
 // Smooth Scrolling Navigation
 function initSmoothScrolling() {
@@ -344,35 +291,67 @@ animationStyles.textContent = `
 `;
 document.head.appendChild(animationStyles);
 
-// Particle Effects
-function initParticleEffects() {
-    const particleContainer = document.querySelector('.bg-particles');
-    const particleCount = 200;
+// Liquid Effect
+function initLiquidEffect() {
+    const canvas = document.getElementById('liquid-canvas');
+    if (!canvas) return;
 
-    console.log('initParticleEffects called, container:', particleContainer);
+    // Load the liquid effect script dynamically
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.textContent = `
+      import LiquidBackground from 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.22/build/backgrounds/liquid1.min.js';
 
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        // Spread particles randomly in the whole container height and width
-        particle.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 4 + 2}px;
-            height: ${Math.random() * 4 + 2}px;
-            background: ${['#00ffff', '#bbd5f0ff', '#bae3eeff', '#a8e1f1ff', '#c3acf1ff', '#3df4f4ff', '#adcef7ff'][Math.floor(Math.random() * 7)]};
-            border-radius: 100%;
-            left: ${Math.random() * 100}vw;
-            top: ${Math.random() * 100}vh;
-            opacity: ${Math.random() * 0.6 + 0.3};
-            animation: particleFloat ${Math.random() * 15 + 10}s linear infinite;
-            box-shadow: 0 0 6px currentColor;
-        `;
-        particleContainer.appendChild(particle);
-        console.log('Particle created:', particle);
-    }
+      const canvas = document.getElementById('liquid-canvas');
+      if (canvas) {
+        const app = LiquidBackground(canvas);
+        app.liquidPlane.material.metalness = 0.75;
+        app.liquidPlane.material.roughness = 0.25;
+        app.liquidPlane.uniforms.displacementScale.value = 5;
+        app.setRain(false);
+        window.__liquidApp = app;
+      }
+    `;
+    document.body.appendChild(script);
 }
 
-// Particle animations are now defined in style.css
+// Custom Cursor
+function initCustomCursor() {
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let cursorX = mouseX;
+    let cursorY = mouseY;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+        const speed = 0.18;
+        cursorX += (mouseX - cursorX) * speed;
+        cursorY += (mouseY - cursorY) * speed;
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    const hoverTargets = document.querySelectorAll('a, button, .btn-glow, .nav-link, .skill-card, .project-card, input, textarea, .contact-item');
+    hoverTargets.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('cursor-hover');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('cursor-hover');
+        });
+    });
+}
+
+
 
 // Hover Effects
 function initHoverEffects() {
@@ -528,11 +507,13 @@ function initTypewriterEffect() {
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
         navbar.style.backdropFilter = 'blur(15px)';
+        navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.15)';
     } else {
-        navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
         navbar.style.backdropFilter = 'blur(10px)';
+        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
     }
 });
 
