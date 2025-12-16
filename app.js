@@ -338,11 +338,6 @@ function initLiquidEffect() {
 
 // Custom Cursor
 function initCustomCursor() {
-    // Skip custom cursor on mobile devices
-    if (window.innerWidth <= 768) {
-        return;
-    }
-
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
     document.body.appendChild(cursor);
@@ -352,9 +347,23 @@ function initCustomCursor() {
     let cursorX = 0;
     let cursorY = 0;
 
+    // Handle mouse events for desktop
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+    });
+
+    // Handle touch events for mobile
+    document.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        mouseX = touch.clientX;
+        mouseY = touch.clientY;
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        mouseX = touch.clientX;
+        mouseY = touch.clientY;
     });
 
     function animateCursor() {
