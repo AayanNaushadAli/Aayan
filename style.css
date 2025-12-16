@@ -828,6 +828,17 @@ body {
   background: radial-gradient(circle at 30% 30%, #ffffff, rgba(59, 130, 246, 0.35));
 }
 
+/* Hide custom cursor on mobile devices */
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none !important;
+  }
+
+  body {
+    cursor: auto !important;
+  }
+}
+
 /* Navigation */
 .navbar {
   position: fixed;

@@ -310,6 +310,27 @@ function initLiquidEffect() {
         app.liquidPlane.uniforms.displacementScale.value = 5;
         app.setRain(false);
         window.__liquidApp = app;
+
+        // Handle window resize for liquid effect
+        window.addEventListener('resize', () => {
+          if (window.innerWidth <= 768) {
+            canvas.style.display = 'none';
+            if (window.__liquidApp) {
+              window.__liquidApp.destroy();
+              window.__liquidApp = null;
+            }
+          } else {
+            canvas.style.display = 'block';
+            if (!window.__liquidApp) {
+              const newApp = LiquidBackground(canvas);
+              newApp.liquidPlane.material.metalness = 0.75;
+              newApp.liquidPlane.material.roughness = 0.25;
+              newApp.liquidPlane.uniforms.displacementScale.value = 5;
+              newApp.setRain(false);
+              window.__liquidApp = newApp;
+            }
+          }
+        });
       }
     `;
     document.body.appendChild(script);
@@ -317,14 +338,19 @@ function initLiquidEffect() {
 
 // Custom Cursor
 function initCustomCursor() {
+    // Skip custom cursor on mobile devices
+    if (window.innerWidth <= 768) {
+        return;
+    }
+
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
     document.body.appendChild(cursor);
 
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let cursorX = mouseX;
-    let cursorY = mouseY;
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
 
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
